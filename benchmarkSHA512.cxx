@@ -9,10 +9,10 @@ namespace sha512
 {
 	void hashCXX(state_t &state)
 	{
-		int64_t bytes = 1 << state.range(0);
+		const int64_t bytes = 1 << state.range(0);
 		auto data = std::make_unique<char []>(bytes);
 
-		while (state.KeepRunning())
+		for (auto _ : state)
 			sha512::sha512(data.get(), bytes);
 
 		state.SetBytesProcessed(int64_t(state.iterations()) * bytes);
@@ -30,10 +30,10 @@ namespace openSSL
 
 	void hashOpenSSL(state_t &state)
 	{
-		int64_t bytes = 1 << state.range(0);
+		const int64_t bytes = 1 << state.range(0);
 		auto data = std::make_unique<uint8_t []>(bytes);
 
-		while (state.KeepRunning())
+		for (auto _ : state)
 			SHA512(data.get(), bytes, hash.data());
 
 		state.SetBytesProcessed(int64_t(state.iterations()) * bytes);
