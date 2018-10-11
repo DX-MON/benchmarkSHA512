@@ -45,4 +45,4 @@ namespace openSSL
 	BENCHMARK(hashOpenSSL)->DenseRange(0, 24)->ReportAggregatesOnly(true);
 }
 
-BENCHMARK_MAIN()
+BENCHMARK_MAIN();
