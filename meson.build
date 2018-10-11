@@ -9,7 +9,7 @@ project(
 )
 
 compiler = meson.get_compiler('cpp')
-googleBenchmark = compiler.find_library('benchmark')
+googleBenchmark = dependency('benchmark')
 clock = compiler.find_library('rt', required: false)
 threads = dependency('threads')
 
